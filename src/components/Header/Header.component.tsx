@@ -1,5 +1,6 @@
-import {AppBar, Link, Toolbar, Typography} from "@mui/material";
+import {AppBar, Toolbar, Typography} from "@mui/material";
 import {Fragment} from "react";
+import Link from "next/link"
 
 const HeaderComponent = () => {
     return(
@@ -12,17 +13,19 @@ const HeaderComponent = () => {
             color="inherit"
         >
             <Toolbar sx={{ flexWrap: 'wrap' }}>
-                <Typography variant="h6" color="inherit" noWrap sx={{flexGrow: 1}}>
-                    UrFirst.NFT
+                <Typography
+                    variant="h6"
+                    color="inherit"
+                    noWrap
+                    sx={{flexGrow: 1}}
+                    >
+                    <Link href="/" style={{ textDecoration: 'none' }}>
+                        UrFirst.NFT
+                    </Link>
                 </Typography>
                 <nav>
-                    <Link
-                        variant="button"
-                        color="text.primary"
-                        href="#"
-                        sx={{ my: 1, mx: 1.5 }}
-                    >
-                        Add one
+                    <Link href="/sale/new" style={{textDecoration: 'none'}}>
+                        Add New Sale
                     </Link>
                 </nav>
             </Toolbar>
