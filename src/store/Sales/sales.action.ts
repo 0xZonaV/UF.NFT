@@ -1,4 +1,4 @@
-import {Action, ActionWithPayload, createAction, withMatcher} from "@/utils/reducer.utils.utils";
+import {Action, ActionWithPayload, createAction, withMatcher} from "@/utils/reducer.utils";
 import {SALE_ACTION_TYPES, SaleType} from "@/store/Sales/sales.types";
 
 
