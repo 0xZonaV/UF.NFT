@@ -26,7 +26,7 @@ const SaleCardComponent:FC<SaleType> = ({
     useEffect(() => {
         const fetchData = async () => {
             const fetchedImageUri = await getDataUtils<Fetched>(baseNFTUri);
-            setImageUri(fetchedImageUri.image);
+            setImageUri("https://gateway.ipfs.io/ipfs/" + fetchedImageUri.image.slice(7));
         }
         fetchData();
     }, [baseNFTUri])

@@ -2,6 +2,7 @@ import {NewCollectionInputFieldsType} from "@/store/newCollection/newCollection.
 import {SaleType} from "@/store/Sales/sales.types";
 import {AnyAction} from "redux";
 import {
+    createNewCollectionFailed,
     createNewCollectionStart,
     createNewCollectionSuccess,
     onInputChange
@@ -42,9 +43,14 @@ export const NewCollectionReducer = (
         return {...state, isLoading: true}
     }
 
-    if(createNewCollectionSuccess(action)) {
-        return {...state, Sale: action.payload, isLoading: false}
+    if(createNewCollectionSuccess.match(action)) {
+        return {...state, isLoading: false}
     }
 
+    if(createNewCollectionFailed.match(action)) {
+        return {...state, isLoading: false, error: action.payload}
+    }
+
+    return state
 
 }

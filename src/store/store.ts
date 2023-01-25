@@ -22,21 +22,22 @@ const persistConfig: ExtendedPersistConfig = {
     whitelist: []
 }
 
+const sagaMiddleware = createSagaMiddleware();
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+const middlewares = [sagaMiddleware];
+const enhancer =
+    process.env.NEXT_PUBLIC_NODE_ENV === "production"
+        ? compose(applyMiddleware(...middlewares))
+        : composeWithDevTools(applyMiddleware(...middlewares));
+
+const store = createStore(persistedReducer, undefined, enhancer);
+store.sagaTask = sagaMiddleware.run(rootSaga);
+(store as any).__PERSISTOR = persistStore(store);
+
 export const configureStore: MakeStore<RootState> = () => {
-
-    const sagaMiddleware = createSagaMiddleware();
-    const persistedReducer = persistReducer(persistConfig, rootReducer);
-    const middlewares = [sagaMiddleware];
-    const enhancer =
-        process.env.NEXT_PUBLIC_NODE_ENV === "production"
-            ? compose(applyMiddleware(...middlewares))
-            : composeWithDevTools(applyMiddleware(...middlewares));
-
-    const store = createStore(persistedReducer, undefined, enhancer);
-    store.sagaTask = sagaMiddleware.run(rootSaga);
-    (store as any).__PERSISTOR = persistStore(store);
     return store;
 };
 
+export {store};
 
 export const wrapper = createWrapper(configureStore);

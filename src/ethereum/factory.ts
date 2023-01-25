@@ -7,7 +7,7 @@ import type {AbiItem} from "web3-utils";
 
 const instance: Contract = new web3.eth.Contract(
     SaleFactory.abi as AbiItem[],
-    "0x6721b54Fb7AD19a2fcf307D731b9ba1F0c5Bf0Ee"
+    "0x264dE5181823706906Df97cAde88332174aa48B1"
 );
 
 export default instance;

@@ -4,7 +4,7 @@ module.exports = {
   env: {
     REACT_APP_MNEMONIC: process.env.REACT_APP_MNEMONIC,
     REACT_APP_INFURA_API: process.env.REACT_APP_INFURA_API,
-    CONTRACT_ADDRESS: process.env.CONTRACT_ADDRESS
+    CONTRACT_ADDRESS: process.env.CONTRACT_ADDRESS,
   }
 };
 

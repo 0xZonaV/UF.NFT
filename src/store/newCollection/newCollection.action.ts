@@ -1,12 +1,11 @@
 import {Action, ActionWithPayload, createAction, withMatcher} from "@/utils/reducer.utils";
 import {NEW_COLLECTION_ACTION_TYPES, NewCollectionInputFieldsType} from "@/store/newCollection/newCollection.types";
-import {SaleType} from "@/store/Sales/sales.types";
 
 export type OnInputChange = ActionWithPayload<NEW_COLLECTION_ACTION_TYPES.ON_INPUT_CHANGE, NewCollectionInputFieldsType>;
 
 export type CreateNewCollectionStart = Action<NEW_COLLECTION_ACTION_TYPES.CREATE_NEW_COLLECTION_START>;
 
-export type CreateNewCollectionSuccess = ActionWithPayload<NEW_COLLECTION_ACTION_TYPES.CREATE_NEW_COLLECTION_SUCCESS, SaleType>;
+export type CreateNewCollectionSuccess = ActionWithPayload<NEW_COLLECTION_ACTION_TYPES.CREATE_NEW_COLLECTION_SUCCESS, any>;
 
 export type CreateNewCollectionFailed = ActionWithPayload<NEW_COLLECTION_ACTION_TYPES.CREATE_NEW_COLLECTION_FAILED, Error>;
 
@@ -21,7 +20,7 @@ export const createNewCollectionStart = withMatcher(
 );
 
 export const createNewCollectionSuccess = withMatcher(
-    (newCreatedCollection: SaleType):CreateNewCollectionSuccess => createAction(NEW_COLLECTION_ACTION_TYPES.CREATE_NEW_COLLECTION_SUCCESS, newCreatedCollection)
+    (newCreatedCollection: any):CreateNewCollectionSuccess => createAction(NEW_COLLECTION_ACTION_TYPES.CREATE_NEW_COLLECTION_SUCCESS, newCreatedCollection)
 );
 
 export const createNewCollectionFailed = withMatcher(
