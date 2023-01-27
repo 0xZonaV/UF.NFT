@@ -16,5 +16,5 @@ export type SaleType = {
     creator: string;
     MaxPerWallet: number;
     isSaleActive: boolean;
-    totalSuply: number;
+    totalSupply: number;
 };

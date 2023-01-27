@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardContent, CardMedia, Typography} from "@mui/material";
+import {Card, CardActionArea, CardContent, CardMedia, Grid, Typography} from "@mui/material";
 import {useRouter} from "next/router";
 import {FC, useEffect, useState} from "react";
 import {getDataUtils} from "@/utils/getData.utils";
@@ -13,7 +13,7 @@ const SaleCardComponent:FC<SaleType> = ({
                                             MaxSupply,
                                             cAddress,
                                             Price,
-                                            totalSuply,
+                                            totalSupply,
                                             isSaleActive,
                                             baseNFTUri
 }) => {
@@ -38,7 +38,8 @@ const SaleCardComponent:FC<SaleType> = ({
 
 
     return(
-        <Card sx={{ maxWidth: 500, mt: 5 }}>
+        <Grid xs={12}>
+        <Card sx={{ maxWidth: 500, mt: 5}}>
             <CardActionArea onClick={onClickHandler}>
                 <CardMedia
                     sx={{ height: 200 }}
@@ -54,12 +55,13 @@ const SaleCardComponent:FC<SaleType> = ({
                         Price: {Price} ETH
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        Minted: {totalSuply} / {MaxSupply}
+                        Minted: {totalSupply} / {MaxSupply}
                     </Typography>
                     {renderIsSaleStarted}
                 </CardContent>
             </CardActionArea>
         </Card>
+        </Grid>
     )
 }
 

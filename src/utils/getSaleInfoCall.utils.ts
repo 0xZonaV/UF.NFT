@@ -18,6 +18,6 @@ export const getSaleInfoCall = async (address: string): Promise<SaleType> => {
         Symbol: saleInfo[6],
         baseNFTUri: saleInfo[7],
         isSaleActive: saleInfo[8],
-        totalSuply: saleInfo[9]
+        totalSupply: saleInfo[9]
     })
 }
