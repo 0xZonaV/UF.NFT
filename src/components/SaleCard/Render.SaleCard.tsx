@@ -1,18 +1,10 @@
 import SaleCardComponent from "@/components/SaleCard/SaleCard.component";
 import {Grid} from "@mui/material";
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
-import {fetchSalesStart} from "@/store/Sales/sales.action";
+import {useSelector} from "react-redux";
 import {selectIsSalesLoading, selectSales} from "@/store/Sales/sale.selector";
-import Spinner from "@/components/loadingSpinner/spinner.component";
+import Spinner from "@/components/LoadingSpinner/Spinner.component";
 
 export const SaleCardMap = (): JSX.Element => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(fetchSalesStart());
-    }, [dispatch])
-
     const AllSalesInfos = useSelector(selectSales);
     const isLoading = useSelector(selectIsSalesLoading);
 

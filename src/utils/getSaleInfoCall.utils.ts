@@ -3,9 +3,7 @@ import collection from "@/ethereum/collection";
 import web3 from "@/ethereum/web3";
 
 export const getSaleInfoCall = async (address: string): Promise<SaleType> => {
-    const {getSaleInfo} = collection(address).methods;
-
-    const saleInfo = await getSaleInfo().call();
+    const saleInfo = await collection(address).methods.getSaleInfo().call();
 
     return ({
         cAddress: address,

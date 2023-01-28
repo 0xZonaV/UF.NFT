@@ -1,4 +1,5 @@
-import {SpinnerOverlay, SpinnerContainer} from './spinner.style';
+// @ts-ignore
+import {SpinnerOverlay, SpinnerContainer} from './Spinner.style';
 import {FC} from "react";
 
 const Spinner: FC = () =>

@@ -8,6 +8,7 @@ import LayoutComponent from "@/components/Layout/Layout.component";
 const MyApp: FC<AppProps> = ({ Component, ...rest }) => {
     const { store, props } = wrapper.useWrappedStore(rest);
     const { pageProps } = props;
+
     return (
         <Provider store={store}>
             <PersistGate persistor={store.__PERSISTOR}>

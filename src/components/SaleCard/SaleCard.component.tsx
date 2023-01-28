@@ -1,7 +1,7 @@
 import {Card, CardActionArea, CardContent, CardMedia, Grid, Typography} from "@mui/material";
 import {useRouter} from "next/router";
 import {FC, useEffect, useState} from "react";
-import {getDataUtils} from "@/utils/getData.utils";
+import {getDataFromBaseURIUtils} from "@/utils/getDataFromBaseURI.utils";
 import {SaleType} from "@/store/Sales/sales.types";
 import {Fetched} from "../../../@types";
 import {red, teal} from "@mui/material/colors";
@@ -25,7 +25,7 @@ const SaleCardComponent:FC<SaleType> = ({
 
     useEffect(() => {
         const fetchData = async () => {
-            const fetchedImageUri = await getDataUtils<Fetched>(baseNFTUri);
+            const fetchedImageUri = await getDataFromBaseURIUtils<Fetched>(baseNFTUri, 1);
             setImageUri("https://gateway.ipfs.io/ipfs/" + fetchedImageUri.image.slice(7));
         }
         fetchData();
@@ -38,7 +38,7 @@ const SaleCardComponent:FC<SaleType> = ({
 
 
     return(
-        <Grid xs={12}>
+        <Grid item xs={12}>
         <Card sx={{ maxWidth: 500, mt: 5}}>
             <CardActionArea onClick={onClickHandler}>
                 <CardMedia
