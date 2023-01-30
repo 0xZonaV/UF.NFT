@@ -4,7 +4,7 @@ import MintForm from "@/components/MintPage/MintForm.component";
 import {
     Box,
     CssBaseline,
-    Grid
+    Grid, Typography
 } from "@mui/material";
 import MintTitle from "@/components/MintPage/MintTitle.component";
 import MintImage from "@/components/MintPage/MintImage.component";
@@ -12,12 +12,15 @@ import MintedNFTsRender from "@/components/MintPage/MintedNFTsRender.function";
 import {useSelector} from "react-redux";
 import {selectSales} from "@/store/Sales/sale.selector";
 import {Fragment} from "react";
+import MintCreatorButton from "@/components/MintPage/MintCreatorButton.component";
+import web3 from "@/ethereum/web3";
 
 type SaleSitePropsType = {
     address?: string | string[];
+    userAccounts: string[];
 }
 
-const SaleSite: NextPage<SaleSitePropsType> = ({address}) => {
+const SaleSite: NextPage<SaleSitePropsType> = ({address,userAccounts}) => {
 
     const isThisSale = (sale: SaleType):boolean => {
         return sale.cAddress === address
@@ -26,7 +29,7 @@ const SaleSite: NextPage<SaleSitePropsType> = ({address}) => {
     const saleInfo = useSelector(selectSales).find(isThisSale);
     if (saleInfo) {
     return (
-        <Grid container component="main" sx={{ height: '90vh' }}>
+        <Grid container component="main" sx={{ height: '90vh', }}>
             <CssBaseline />
             <MintImage saleInfo={saleInfo as SaleType} />
             <Grid item xs={12} sm={8} md={5}>
@@ -39,8 +42,12 @@ const SaleSite: NextPage<SaleSitePropsType> = ({address}) => {
                         alignItems: 'center',
                     }}
                 >
+                    <MintCreatorButton creatorAddress={saleInfo.creator} userAddress={userAccounts[0]} cAddress={saleInfo.cAddress} />
                     <MintTitle name={saleInfo.Name} />
                     <MintForm saleInfo={saleInfo} />
+                    <Typography variant='h6'>
+                        Minted NFTs
+                    </Typography>
                     <MintedNFTsRender saleInfo={saleInfo} />
                 </Box>
             </Grid>
@@ -61,7 +68,9 @@ const SaleSite: NextPage<SaleSitePropsType> = ({address}) => {
 SaleSite.getInitialProps = async ({query}): Promise<SaleSitePropsType> => {
     const {address} = query;
 
-    return {address};
+    const userAccounts: string[] = await web3.eth.getAccounts();
+
+    return {address, userAccounts};
 }
 
 export default SaleSite;

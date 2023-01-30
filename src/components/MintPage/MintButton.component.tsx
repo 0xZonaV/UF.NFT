@@ -11,9 +11,9 @@ const MintButton: FC<MintButtonProps> = ({isSaleActive}) => {
             variant="contained"
             type="submit"
             size="large"
-            sx={{
-                height: "100",
-                width: "50%",
+            fullWidth
+            style={{
+                height: "100%",
                 marginLeft: "20px"
             }}
             disabled={!isSaleActive}

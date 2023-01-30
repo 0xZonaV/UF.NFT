@@ -1,6 +1,7 @@
 import {SaleType} from "@/store/Sales/sales.types";
-import {FC, Fragment} from "react";
+import {FC} from "react";
 import MintedNFTs from "@/components/MintPage/MintedNFTs.component";
+import {Grid} from "@mui/material";
 
 type MintedNFTsRender = {
     saleInfo: SaleType;
@@ -24,9 +25,9 @@ const MintedNFTsRender: FC<MintedNFTsRender> = ({saleInfo}) => {
     )
 
     return(
-        <Fragment>
+        <Grid container>
             {loopMinted}
-        </Fragment>
+        </Grid>
     )
 }
 

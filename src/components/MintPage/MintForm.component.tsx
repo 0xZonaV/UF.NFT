@@ -1,4 +1,4 @@
-import {Box, TextField, Typography} from "@mui/material";
+import {Grid, TextField, Typography} from "@mui/material";
 import web3 from "@/ethereum/web3";
 import collection from "@/ethereum/collection";
 import {ChangeEvent, FC, FormEvent, useState} from "react";
@@ -11,7 +11,7 @@ type MintButtonProps = {
 
 const MintForm: FC<MintButtonProps> = ({saleInfo}) => {
 
-    const {Price, cAddress, isSaleActive} = saleInfo;
+    const {Price, cAddress, isSaleActive, totalSupply, MaxSupply} = saleInfo;
 
     const weiPrice = web3.utils.toWei(Price);
 
@@ -35,24 +35,35 @@ const MintForm: FC<MintButtonProps> = ({saleInfo}) => {
     }
 
     return(
-            <Box
+            <Grid
+                container
                 component="form"
                 autoComplete="off"
                 onSubmit={MintNFT}
-                sx={{ marginTop: "20px" }}
             >
-                <TextField
-                    id="quantityField"
-                    name="quantity"
-                    variant="outlined"
-                    onChange={onInputChange}
-                    sx={{ width: "30%"}}
-                />
-                <MintButton isSaleActive={isSaleActive} />
-                <Typography noWrap variant="overline">
-                    Price: {quantity ? web3.utils.fromWei(String(weiPrice * quantity), 'ether') : 0} ETH
-                </Typography>
-            </Box>
+                <Grid item xs={5}>
+                    <TextField
+                        id="quantityField"
+                        name="quantity"
+                        variant="outlined"
+                        onChange={onInputChange}
+                        style={{ width: "100%", height: "100%"}}
+                    />
+                </Grid>
+                <Grid item xs={6}>
+                    <MintButton isSaleActive={isSaleActive} />
+                </Grid>
+                <Grid item xs={4}>
+                    <Typography noWrap variant="h6" style={{marginTop: "10px"}}>
+                        Price: {quantity ? web3.utils.fromWei(String(weiPrice * quantity), 'ether') : 0} ETH
+                    </Typography>
+                </Grid>
+                <Grid item xs={8} style={{textAlign: "right"}}>
+                    <Typography noWrap variant="h6" style={{marginTop: "10px"}}>
+                        Minted: {totalSupply}/{MaxSupply}
+                    </Typography>
+                </Grid>
+            </Grid>
     )
 }
 

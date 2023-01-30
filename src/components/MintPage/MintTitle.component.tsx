@@ -7,7 +7,7 @@ type MintTitleProp = {
 
 const MintTitle: FC<MintTitleProp> = ({name}) => {
     return(
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" style={{marginBottom: "20px"}}>
             Mint {name} NFT
         </Typography>
     )

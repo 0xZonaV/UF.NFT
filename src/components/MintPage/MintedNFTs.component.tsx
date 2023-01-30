@@ -1,4 +1,4 @@
-import {Card, CardContent, CardMedia, Typography} from "@mui/material";
+import {Card, CardContent, CardMedia, Grid, Typography} from "@mui/material";
 import {FC, useEffect, useState} from "react";
 import {getDataFromBaseURIUtils} from "@/utils/getDataFromBaseURI.utils";
 
@@ -35,19 +35,21 @@ const MintedNFTs: FC<MintedNFTsType> = ({num, baseUri}) => {
     );
 
     return(
-        <Card sx={{maxWidth: "100px"}}>
-            <CardMedia
-                component="img"
-                alt={nftInfo.name}
-                src={nftInfo.image}
-                title={nftInfo.name}
-            />
-            <CardContent>
-                <Typography gutterBottom variant="body2" component="div">
-                    {nftInfo.name}
-                </Typography>
-            </CardContent>
-        </Card>
+        <Grid item xs={4} style={{marginTop: "20px"}}>
+            <Card sx={{maxWidth: "150px"}}>
+                <CardMedia
+                    component="img"
+                    alt={nftInfo.name}
+                    src={nftInfo.image}
+                    title={nftInfo.name}
+                />
+                <CardContent>
+                    <Typography gutterBottom variant="body2" component="div">
+                        {nftInfo.name}
+                    </Typography>
+                </CardContent>
+            </Card>
+        </Grid>
     )
 }
 
