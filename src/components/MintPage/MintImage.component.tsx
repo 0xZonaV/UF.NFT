@@ -15,8 +15,15 @@ const MintImage: FC<MintImageProps> = ({saleInfo}) => {
     useEffect(
         () => {
             const fetchImage = async () => {
-                const fetchedImageUri = await getDataFromBaseURIUtils<Fetched>(saleInfo.baseNFTUri, 1);
-                setImage( "https://gateway.ipfs.io/ipfs/" + fetchedImageUri.image.slice(7));
+                if (saleInfo.baseNFTUri.slice(0,4) === "ipfs") {
+                    const fetchedImageUri = await getDataFromBaseURIUtils<Fetched>(saleInfo.baseNFTUri, 1);
+                    setImage( "https://gateway.ipfs.io/ipfs/" + fetchedImageUri.image.slice(7));
+                } else {
+                    const fetchedImageUri = await getDataFromBaseURIUtils<Fetched>(saleInfo.baseNFTUri, 1);
+                    // @ts-ignore
+                    setImage(fetchedImageUri.image_url);
+                }
+
             }
             fetchImage();
         },
