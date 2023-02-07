@@ -44,7 +44,7 @@ const SaleCardComponent:FC<SaleType> = ({
 
     return(
         <Grid item xs={12}>
-        <Card sx={{ maxWidth: 500, mt: 5}}>
+        <Card sx={{ maxWidth: 800, mt: 5}}>
             <CardActionArea onClick={onClickHandler}>
                 <CardMedia
                     sx={{ height: 200 }}

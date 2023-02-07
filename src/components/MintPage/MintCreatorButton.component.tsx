@@ -9,8 +9,6 @@ type MintCreatorButtonType = {
 
 const MintCreatorButton: FC<MintCreatorButtonType> = ({creatorAddress, userAddress,cAddress}) => {
 
-    console.log(creatorAddress, userAddress);
-
     if (userAddress === creatorAddress) {
         return(
             <Grid item xs={12}>

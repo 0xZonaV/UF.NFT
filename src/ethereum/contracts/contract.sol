@@ -58,6 +58,8 @@ contract NFT is ERC721URIStorage, Ownable {
         MAX_MINT_PER_TX = MaxPerTX;
         MAX_MINT_PER_WALLET = MaxPerWallet;
 
+
+//        FIXME: Delete this peace of code in production
         for (uint256 i =1; i<TOKENS_RESERVED; i++) {
             _safeMint (msg.sender, i);
         }
@@ -93,6 +95,7 @@ contract NFT is ERC721URIStorage, Ownable {
         baseURI = _baseURI;
     }
 
+//    TODO: edit this to withdraw some amoount not all
     function withdrawAll() external payable onlyCreator {
         uint256 balance = address(this).balance;
         (bool transfer,) = payable(msg.sender).call{value: balance}("");

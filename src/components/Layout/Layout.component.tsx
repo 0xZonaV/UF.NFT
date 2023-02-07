@@ -1,6 +1,5 @@
 import React, {Fragment, useEffect} from "react";
 import HeaderComponent from "@/components/Header/Header.component";
-import FooterComponent from "@/components/Footer/Footer.component";
 import Head from "next/head";
 import {useDispatch} from "react-redux";
 import {fetchSalesStart} from "@/store/Sales/sales.action";
@@ -23,8 +22,9 @@ const LayoutComponent = ({children}: LayoutProps) => {
                 <title>UrFirst.NFT</title>
             </Head>
             <HeaderComponent />
+            <div style={{ justifyContent: "center", display: "flex" }}>
                 {children}
-            <FooterComponent/>
+            </div>
         </Fragment>
     )
 }
